@@ -1,0 +1,125 @@
+@import "reset.css"
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap'
+
+@import "variables"
+
+body
+    font-size: 14px
+
+p
+    margin: 0 0 10px
+
+h1, .h1, h2, .h2, h3, .h3
+    margin-top: 20px
+    margin-bottom: 10px
+
+
+h1
+    font-size: 36px
+
+.mb40
+    margin-bottom: 40px
+
+.wrapper
+    display: flex
+
+.aside
+    width: 280px
+    background: $grey
+    min-height: 100vh
+    flex-shrink: 0
+
+    .logo
+        display: block
+        margin-top: 20px
+        position: relative
+        z-index: 100
+        color: #999
+        transition: display 1s ease-out 1s
+        text-decoration: none
+
+        img
+            display: block
+            max-width: 100%
+            margin: 0 auto 10px
+
+        .slogan
+            padding: 0 15px
+            margin-top: 10px
+            display: block
+            font-size: 14px
+
+    .search
+        margin: 20px 0
+        padding: 10px 20px
+        background: #343b48
+        box-shadow: 0 0 1px rgba(255,255,255,.3)
+
+        .input-group-addon
+            padding: 0
+
+.nav
+    flex-direction: column
+    width: 100%
+
+    > li
+        position: relative
+
+        &.active, a:hover,  a:focus
+            background-color: #1f232b
+            text-decoration: none
+
+        > a
+            position: relative
+            display: block
+            padding: 10px 15px 10px 30px
+            color: $white
+
+
+        &:before
+            position: absolute
+            z-index: 1
+            content: ''
+            display: block
+            width: 0
+            height: 0
+            border-left: 6px solid rgba(255,255,255,.6)
+            border-top: 3px solid transparent
+            border-bottom: 3px solid transparent
+            top: 17px
+            left: 12px
+
+.content
+    width: 100%
+
+.topPanel
+    background: $black
+    height: 50px
+    display: flex
+    align-items: center
+
+    ul
+        display: flex
+        margin: 0
+
+        a
+            text-decoration: none
+            color: $white
+            font-size: 14px
+            margin: 14px 0
+            display: flex
+            align-items: center
+            padding: 0 20px
+
+            &:hover
+                text-decoration: underline
+
+            img
+                margin-left: 10px
+
+.content-wrap
+    padding: 0 20px
+    position: relative
+    overflow: hidden
