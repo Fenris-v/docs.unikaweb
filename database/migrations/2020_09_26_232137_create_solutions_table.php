@@ -17,6 +17,7 @@ class CreateSolutionsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->text('description');
             $table->boolean('visible')->default(true);
             $table->softDeletes();
             $table->timestamps();

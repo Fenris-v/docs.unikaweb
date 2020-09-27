@@ -1,17 +1,30 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Franzose\ClosureTable\Models\Entity;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Article extends Model
+class Article extends Entity
 {
     use HasSlug;
     use SoftDeletes;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'articles';
+
+    /**
+     * ClosureTable model instance.
+     *
+     * @var ArticleClosure
+     */
+    protected $closure = 'App\Models\ArticleClosure';
 
     /**
      * Генерирует ссылку
@@ -23,5 +36,38 @@ class Article extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug')
             ->doNotGenerateSlugsOnUpdate();
+    }
+
+    /**
+     * Изменяет роут кей
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
+     * Многие ко многим с решениями
+     * @return BelongsToMany
+     */
+    public function solutions()
+    {
+        return $this->belongsToMany(Solution::class);
+    }
+
+    public function depth()
+    {
+        return $this->hasOne(ArticleClosure::class, 'closure_id');
+    }
+
+    /**
+     * Корневые категории
+     * @param $query
+     * @return mixed
+     */
+    public function scopeNoParents($query)
+    {
+        return $query->where('parent_id', null);
     }
 }

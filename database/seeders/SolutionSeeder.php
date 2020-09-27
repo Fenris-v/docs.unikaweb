@@ -42,13 +42,15 @@ class SolutionSeeder extends Seeder
                 Solution::create(
                     [
                         'name' => $solution,
-                        'visible' => false
+                        'visible' => false,
+                        'description' => '<p>Здесь будет короткое описание решения</p>'
                     ]
                 );
             } else {
                 Solution::create(
                     [
-                        'name' => $solution
+                        'name' => $solution,
+                        'description' => '<p>Здесь будет короткое описание решения</p>'
                     ]
                 );
             }

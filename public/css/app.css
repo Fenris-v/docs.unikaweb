@@ -11343,11 +11343,19 @@ h1 {
   text-decoration: none;
 }
 
+.nav > li.active a:hover {
+  background: #000;
+}
+
 .nav > li > a {
   position: relative;
   display: block;
   padding: 10px 15px 10px 30px;
   color: #ffffff;
+}
+
+.nav > li.no-children:before {
+  border-left: 6px solid rgba(255, 255, 255, 0.05);
 }
 
 .nav > li:before {
@@ -11362,6 +11370,39 @@ h1 {
   border-bottom: 3px solid transparent;
   top: 17px;
   left: 12px;
+}
+
+.nav .submenu a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 10px 10px 10px 40px;
+}
+
+.nav .submenu a:hover {
+  background: #000;
+}
+
+.nav .submenu li {
+  position: relative;
+  border-top: 1px solid #343b48;
+}
+
+.nav .submenu li:hover,
+.nav .submenu li.active {
+  background: #000;
+}
+
+.nav .submenu li::before {
+  position: absolute;
+  content: " ";
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  top: 18px;
+  left: 28px;
+  background: #fff;
 }
 
 .content {

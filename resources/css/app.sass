@@ -71,12 +71,18 @@ h1
             background-color: #1f232b
             text-decoration: none
 
+        &.active a:hover
+            background: #000
+
         > a
             position: relative
             display: block
             padding: 10px 15px 10px 30px
             color: $white
 
+        &.no-children
+            &:before
+                border-left: 6px solid rgba(255,255,255,.05)
 
         &:before
             position: absolute
@@ -90,6 +96,34 @@ h1
             border-bottom: 3px solid transparent
             top: 17px
             left: 12px
+
+    .submenu
+        a
+            color: #fff
+            text-decoration: none
+            display: block
+            padding: 10px 10px 10px 40px
+
+            &:hover
+                background: #000
+
+        li
+            position: relative
+            border-top: 1px solid #343b48
+
+            &:hover, &.active
+                background: #000
+
+            &::before
+                position: absolute
+                content: ' '
+                display: block
+                width: 4px
+                height: 4px
+                border-radius: 50%
+                top: 18px
+                left: 28px
+                background: #fff
 
 .content
     width: 100%

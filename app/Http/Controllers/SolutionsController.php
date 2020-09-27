@@ -12,7 +12,7 @@ use Illuminate\View\View;
 class SolutionsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Главная
      *
      * @return Application|Factory|Response|View
      */
@@ -24,68 +24,15 @@ class SolutionsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * Страница решения
      *
      * @param Solution $solution
      * @return Application|Factory|Response|View
      */
     public function show(Solution $solution)
     {
-        return view('main.index');
-    }
+        $articles = $solution->articles()->noParents()->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Solution $solution
-     * @return Response
-     */
-    public function edit(Solution $solution)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param Solution $solution
-     * @return Response
-     */
-    public function update(Request $request, Solution $solution)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Solution $solution
-     * @return Response
-     */
-    public function destroy(Solution $solution)
-    {
-        //
+        return view('solution.index', compact('solution', 'articles'));
     }
 }

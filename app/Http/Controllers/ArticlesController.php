@@ -3,83 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use Illuminate\Http\Request;
+use App\Models\Solution;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class ArticlesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Статья или вложенная статья
      *
-     * @return \Illuminate\Http\Response
+     * @param Solution $solution
+     * @param Article $article
+     * @param Article|null $article1
+     * @return Application|Factory|Response|View
      */
-    public function index()
+    public function show(Solution $solution, Article $article, Article $article1 = null)
     {
-        //
-    }
+        $menu = Article::noParents()->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $submenu = [];
+        if (isset($article1)) {
+            $submenu = $article->getChildren();
+        } elseif ($article->hasChildren()) {
+            $submenu = $article->getChildren();
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Article $article)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Article $article)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Article $article)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Article $article)
-    {
-        //
+        return view('article.index', compact('solution', 'article', 'article1', 'menu', 'submenu'));
     }
 }

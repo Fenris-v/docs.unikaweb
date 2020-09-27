@@ -42,4 +42,13 @@ class Solution extends Model
     {
         return 'slug';
     }
+
+    /**
+     * Многие ко многим со статьями
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function articles()
+    {
+        return $this->belongsToMany(Article::class);
+    }
 }

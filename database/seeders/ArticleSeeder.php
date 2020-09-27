@@ -26,8 +26,22 @@ class ArticleSeeder extends Seeder
             'Отзывы'
         ];
 
+        $test = [
+            'test',
+            'test1',
+            'test2',
+            'test3',
+            'test4',
+            'test5',
+            'test6'
+        ];
+
         foreach ($articles as $article) {
             Article::create(['name' => $article]);
+        }
+
+        foreach ($test as $article) {
+            Article::create(['name' => $article, 'parent_id' => rand(1, 9)]);
         }
     }
 }
