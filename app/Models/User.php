@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -40,4 +40,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Создает вычисляемое поле isAdmin
+     * @return bool
+     */
+    public function getIsAdminAttribute(): bool
+    {
+        if ($this->admin === null) {
+            $this->admin = $this->groups()->where('id', Group::ADMIN_ID)->exists();
+        }
+
+        return $this->admin;
+    }
+
+    /**
+     * Создаем связь "многие ко многим"
+     * @return BelongsToMany
+     */
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
 }

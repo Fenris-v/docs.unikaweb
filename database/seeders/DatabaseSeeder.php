@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
             [
                 SolutionSeeder::class,
                 ArticleSeeder::class,
-                ArticleSolutionSeeder::class
+                ArticleSolutionSeeder::class,
+                GroupSeeder::class,
+                UserSeeder::class,
+                GroupUserSeeder::class
             ]
         );
     }
